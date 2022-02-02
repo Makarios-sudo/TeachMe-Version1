@@ -1,0 +1,128 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+<!-- Single Profile page -->
+
+<section id="about" class="about">
+
+    <!-- Profile Details-->
+    <div class="container">
+      <div class="container text-center">
+        <h2><b>  {{profile.name|title}}'s Profile </b></h2> <hr>
+      </div>
+
+  
+
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="{{profile.image.url}}" class="img-fluid" alt="">
+
+          {% if request.user.profile == profile %}
+          <p>You can not send yourself a message, but can send other tutors</p>
+
+          {% else %}
+          <div class="btn btn-large btn-dark mt-2 d-grid"><a href=" {% url 'sendMessage' profile.pk %} ">send message</a></div>
+          {% endif %}
+        </div>
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content">
+        
+          <h3> <strong>Name</strong></h3>
+          <p class="fst-italic"> {{profile.name|title}} </p> <hr>
+
+          <h3> <strong>About</strong></h3>
+          <p class="fst-italic"> {{profile.intro|title}} </p> <hr>
+
+          <h3> <strong>Email</strong></h3>
+          <p class="fst-italic"> {{profile.email}} </p> <hr>
+
+          <h3> <strong>Biography</strong></h3>
+          <p class="fst-italic"> {{profile.biography}} </p> <hr>
+
+          <h3> <strong>Location</strong></h3>
+          <p class="fst-italic"> {{profile.location|title}} </p> <hr>
+
+         
+          <h3> <strong>Skills</strong></h3>
+          {% for skill in skills %}
+            {{skill.name|title}} , 
+          {% endfor %}
+          <hr>
+
+          {% if profile.other_skill %}
+          <h3> <strong>Other Skills</strong></h3>
+          {{profile.other_skill|title}} 
+          {% endif %} <hr>
+
+          <div class="social">
+            <h3> <strong>Contact</strong></h3>
+
+            {% if profile.instagram_link  %}
+              <a href="{{profile.instagram_link}}"><i class="bi bi-instagram"></i></a>
+            {% endif %}
+           
+            {% if profile.facebook_link  %}
+              <a href="{{profile.facebook_link}}"><i class="bi bi-facebook"></i></a>
+            {% endif %}
+
+            {% if profile.linkedin_link %}
+              <a href="{{profile.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
+            {% endif %}
+
+            {% if profile.youtube_link %}
+              <a href="{{profile.youtube_link}}"><i class="bi bi-youtube"></i></a>
+            {% endif %}
+
+            {% if profile.website_link %}
+              <a href="{{profile.website_link }}"><i class="bi bi-globe"></i>
+              </i></a>
+            {% endif %}  
+            
+
+            </div> <hr>
+
+          </div>
+
+        </div>
+    </div>
+    <!-- end Profile details-->
+
+
+    <!-- Tutorial By Profile-->
+    <section class="more-services section-bg">
+        <div class="container text-center">
+            <h2> Tutorial by {{profile.name|title}} </h2> <hr>
+
+  
+          <div class="row">
+
+            {% for tutorial in profile.tutorial_set.all %}
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-5 mb-lg-0 mt-3">
+              <div class="card">
+                <a href=""><img src="{{tutorial.image.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">{{tutorial.name}}</a></h5>
+                  <p class="card-text">{{tutorial.description}}</p>
+                  <a href="{% url 'singleTutorial' tutorial.id  %}" class="btn">view tutorial</a>
+                  
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+            
+          </div>
+  
+        </div>
+    </section>
+    <!-- end tutorial by profile-->
+
+    
+</section>
+  <!-- end Single Profile page -->
+
+  {% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if page == 'Login' %}
+
+
+
+<body class="main-bg ">
+        <div class="login-container text-c animated flipInX">
+
+            <div class="alert alert-warning" role="alert">
+                You Must Be A Tutor Inorder To Signin
+              </div> <hr>
+                    <h3 class="text-whitesmoke">Sign In To TeachMe</h3>
+
+                  
+                <div class="container-content">
+
+                    {% for message in messages %}
+                        <p style="color: antiquewhite;">{{message}}</p>
+                    {% endfor %}
+
+                    <form class="margin-t" method ="POST"  autocomplete="off">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="" style="color: beige;">Username</label>
+                            <input type="text" class="form-control" name="username" required="">
+                        </div> <br>
+
+                        <div class="form-group">
+                            <label for="" style="color: beige;">Password</label>
+                            <input type="password" class="form-control" name="password"  required="">
+                        </div> <br>
+
+                        <button type="submit" class="form-button button-l margin-b">Sign In</button>
+        
+                        <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
+                        <!-- 
+                        <p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+                        <a class="text-darkyellow" href="{% url 'userRegister' %}"><small>Register</small></a>
+                        -->
+                    </form>
+                    
+                </div>
+            </div>
+</body>
+<br>
+
+{% else %}
+
+
+<body class="main-bg ">
+    <div class="login-container text-c animated flipInX">
+        
+            <h3 class="text-whitesmoke">Register</h3>
+            <div class="container-content">
+                {% for message in messages %}
+                    <p style="color: antiquewhite;">{{message}}</p> 
+                {% endfor %}
+                
+
+                <form class="margin" method="POST" autocomplete="off">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <label for="formInput#text" style="color: beige;">{{field.label}}</label>
+                    {{field}} <br>
+
+                    {% endfor%}
+                    <br> 
+
+                    <button type="submit" class="form-button button-l margin-b">Register</button>
+    
+                    <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
+                    <p class="text-whitesmoke text-center"><small>Already have an account? <a class="text-darkyellow" href="{% url 'userLogin' %}"><small>Login</small></a></small></p>
+                    
+                </form>
+
+                <br>
+                
+            </div>
+    </div>
+</body>
+
+{% endif %}
+
+{% endblock content %}

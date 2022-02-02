@@ -1,0 +1,151 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+<section id="about" class="about">
+
+    <!-- Profile Details-->
+    <div class="container">
+     
+      
+      <div class="container text-center">
+        <h2> My Account </h2>
+        <p><a href=" {% url 'updateAccount' %} " class="btn  btn-outline-success rounded">Edit Account</a></p>
+
+      </div>
+    
+      <hr>
+
+    
+
+      <div class="row">
+        <div class="col-lg-6" ">
+          
+          <img src="{{profile.image.url}}" class="img-fluid" alt="">
+         <hr>
+         
+        </div> 
+        
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content">
+          
+        
+          <h3> <strong>Name</strong></h3>
+          <div>
+          <p class="fst-italic"> {{profile.name|title}} 
+          
+          </p> 
+          </div> <hr>
+
+          <h3> <strong>About</strong></h3>
+          <p class="fst-italic"> {{profile.intro|title}}
+            
+           </p> <hr>
+
+          <h3> <strong>Email</strong></h3>
+          <p class="fst-italic"> {{profile.email}} 
+          
+          </p> <hr>
+
+          <h3> <strong>Biography</strong></h3>
+          <p class="fst-italic"> {{profile.biography}} 
+            
+            
+          </p> <hr>
+
+          <h3> <strong>Location</strong></h3>
+          <p class="fst-italic"> {{profile.location|title}}
+          
+           </p> <hr>
+
+         
+          <h3> <strong>Skills</strong></h3>
+          {% for skill in skills %}
+            {{skill.name|title}} , 
+          {% endfor %}
+          
+          <hr>
+
+          {% if profile.other_skill %}
+          <h3> <strong>Other Skills</strong></h3>
+          {{profile.other_skill|title}} 
+          {% endif %} <hr>
+
+         
+
+          <div class="social">
+            <h3> <strong>Contact</strong></h3>
+
+            {% if profile.instagram_link  %}
+              <a href="{{profile.instagram_link}}"><i class="bi bi-instagram"></i></a>
+
+            {% endif %}
+           
+            {% if profile.facebook_link  %}
+              <a href="{{profile.facebook_link}}"><i class="bi bi-facebook"></i></a>
+            {% endif %}
+
+            {% if profile.linkedin_link %}
+              <a href="{{profile.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
+            {% endif %}
+
+            {% if profile.youtube_link %}
+              <a href="{{profile.youtube_link}}"><i class="bi bi-youtube"></i></a>
+            {% endif %}
+
+            {% if profile.website_link %}
+              <a href="{{profile.website_link }}"><i class="bi bi-globe"></i>
+              </i></a>
+            {% endif %}  
+            
+
+            </div> <hr>
+
+          </div>
+
+        </div>
+    </div>
+    <!-- end Profile details-->
+
+
+    <!-- Tutorial By Profile-->
+    <section class="more-services section-bg">
+        <div class="container text-center">
+            <h2> Tutorial by {{profile.name|title}} </h2>
+            <p><a href="{% url 'createTutorial'  %}" class="btn">Create New tutorial</a></p>
+            <hr>
+          <div class="row">
+
+            {% for tutorial in profile.tutorial_set.all %}
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-5 mb-lg-0 mt-3">
+              <div class="card">
+                <a href="{% url 'singleTutorial' tutorial.id  %}"><img src="{{tutorial.image.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">{{tutorial.name}}</a></h5>
+                  <p class="card-text">{{tutorial.description}}</p>
+                  
+                  <a href="{% url 'updateTutorial' tutorial.id  %}" class="btn">Update tutorial</a>
+                  <a href="{% url 'deleteTutorial' tutorial.id  %}" class="btn">Delete tutorial</a>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div>
+              {{request.user.name}} You Have No Tutorial Yet
+            </div>
+            {% endfor %}
+            
+            
+          </div>
+  
+        </div>
+    </section>
+    <!-- end tutorial by profile-->
+
+    
+</section>
+{% include 'footer.html' %} 
+{% endblock content %}

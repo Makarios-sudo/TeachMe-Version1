@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="carousel-background"><img src="{% static 'img/slide/slide-1.jpg' %}" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>TeachMe</span></h2>
+                <p class="animate__animated animate__fadeInUp">Learning Has Never Been This easy.</p>
+                <a href="{% url 'tutorials' %}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>   
+
+      </div>
+    </div>
+  </section><!-- End Hero --> 
+
+
+
+
+  {% include 'footer.html' %} 
+{% endblock %}
+
+
+
+
+
+
+
+
+

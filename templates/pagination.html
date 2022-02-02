@@ -1,0 +1,29 @@
+
+
+{% if querySet.has_other_pages %}
+<div class="center">
+  <div class="pagination">
+
+  {% if querySet.has_previous %}
+  <a href="?page={{querySet.previous_page_number}}" class=" btn-link " data-page="{{querySet.previous_page_number}}" >&#10094; Prev</a>
+  {% endif %}
+
+  {% for page in custom_range %}
+
+    {% if  page == querySet.number%}
+    <a href="?page={{page}}" class="active btn-link" data-page="{{page}}" >{{page}}</a>
+    {% else %}
+      <a href="?page={{page}}" class=" btn-link" data-page="{{page}}" >{{page}}</a>
+    {% endif %}
+
+  {% endfor %}
+
+  {% if querySet.has_next %}
+  <a href="?page={{querySet.next_page_number}}" class=" btn-link " data-page="{{querySet.next_page_number}}">&#10095; Next</a>
+  {% endif %} 
+  </div>
+</div>
+{% endif %}
+
+
+

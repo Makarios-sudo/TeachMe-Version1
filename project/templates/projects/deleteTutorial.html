@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <h3>Sure you want to delete " {{object}}"? </h3>
+
+    <button type="submit">Delete</button>
+</form>
+<br>
+
+<button><a href=" {% url 'account' %} ">Back</a></button>
+
+
+
+
+
+
+{% endblock content %}

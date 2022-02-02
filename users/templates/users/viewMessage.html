@@ -1,0 +1,41 @@
+
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<br><br>
+<div class="container mt-5">
+  <div>
+
+  </div>
+
+
+
+  <h1><a href=" {% url 'inboxMessage'  %} "><i class="bi bi-arrow-left-square-fill" ></i></a></h1>
+<div class="accordion " id="accordionExample">
+
+    
+
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">{{messsageDetails.senderName |title}}__________@{{messsageDetails.email }}</h4>
+      
+      <hr>
+      {% if inboxMessage.subject %}
+      <span>{{messsageDetails.subject|title}}</span>
+      {% endif %} <br><br>
+      <p class="mb-0">{{messsageDetails.body|title}}_________{{messsageDetails.created|timesince}}</p>
+    </div>
+    
+    
+  </div>
+
+</div>
+
+
+
+
+
+{% endblock content %}

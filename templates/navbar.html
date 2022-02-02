@@ -1,0 +1,64 @@
+
+<!-- ======= Header ======= -->
+<header id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <div class="logo">
+      <h1 class="text-light" "><a href="{% url 'homepage' %}"><span style="color: rgb(71, 57, 57);">TeachMe</span></a></h1>
+      
+    </div>
+    {% if request.user.is_authenticated %}
+    <h4 style="color: rgb(71, 71, 64);">Welcome {{request.user.username |title}}</h4>
+
+    {% endif %}
+    {% for message in messages %}
+      <p style="color: antiquewhite;">{{message}}</p> 
+    {% endfor %}
+
+    
+    
+    <nav id="navbar" class="navbar">
+      <ul>
+        {% if request.user.is_authenticated  %}
+
+        <li><a class="nav-link scrollto" href="{% url 'tutorials' %}">Tutorials</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'profile' %}">Tutors</a></li>  
+        <li><a class="nav-link scrollto" href="{% url 'createAccount' %}">My Account</a></li> 
+        <li><a class="nav-link scrollto" href=" {% url 'inboxMessage' %} ">Inbox</a></li> 
+           
+        <li><a class="nav-link scrollto" href="">Cart</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'userLogout' %}">Logout</a></li>
+
+        {% else %}
+        <li><a class="nav-link scrollto" href="{% url 'homepage' %}">Home</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'tutorials' %}">Tutorials</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'profile' %}"> Tutors</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'becomeTutor' %}">Become A Tutor</a></li>
+        <li><a class="nav-link scrollto" href="">Cart</a></li>  
+        <li><a class="nav-link scrollto" href="{% url 'userLogin' %}">Login</a></li>
+        
+        
+        {% endif %}
+        
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+
+      
+    </nav><!-- .navbar -->
+
+  
+
+  
+
+  
+</div>
+
+ 
+</header><!-- End Header -->
+
+
+<div>
+
+</div>
+

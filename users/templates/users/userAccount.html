@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+<body class="account-bg ">
+  {% if page == 'updateAccount' %} 
+
+<div class="col-md-6 offset-md-3 mt-5 accountcontainer" > <br>
+  <hr>
+
+  <form action="" method="POST" enctype="multipart/form-data" class="accountform">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="">
+      <label for="exampleFormControlInput1" class="form-label">{{field.label}} </label>
+      {{field}}
+    </div>
+       
+    {% endfor %} 
+
+    <button class="btn btn-outline-success mt-3"> Edit </button>
+  </form>
+  <hr>
+
+</div> 
+{% else %}
+
+<div class="col-md-6 offset-md-3 mt-5 accountcontainer" > <br>
+  <hr>
+
+  <form action="" method="POST" enctype="multipart/form-data" class="accountform">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="">
+      <label for="exampleFormControlInput1" class="form-label">{{field.label}} </label>
+      {{field}}
+    </div>
+       
+    {% endfor %} 
+
+    <button class="btn btn-outline-secondary mt-3"> Create </button>
+  </form>
+  <hr>
+
+</div> 
+
+{% endif %}
+
+</body>
+    
+
+{% include 'footer.html' %}
+{% endblock %}

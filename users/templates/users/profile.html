@@ -1,0 +1,85 @@
+
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+<section id="team" class="team ">
+    <div class="container mt-3">
+      
+
+     <div class="header_container">
+      <div class="section-title">
+        <h2>Tutors</h2>
+        <p>Top Professionals in their fields.</p>
+      </div>
+
+      <form  id="searchForm" action="{% url 'profile' %}" method="get">
+
+        <div style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+          <input class="form-control"  placeholder="Search For Tutors ..." name="searchQuery" value="{{searchQuery}}">   
+        </div>
+        
+      </form>
+  
+     </div>
+
+
+      <div class="row mt-5">
+        {% for profile in profiles %}
+
+        <div class="col-xl-4 col-lg-4 col-md-6">
+          <div class="member">
+            <img src="{{profile.image.url}}" class="img-fluid" alt="">
+            <div class="member-info">
+              <div class="member-info-content">
+                <h4>{{profile.name | title}}</h4>
+                <p style="color: aliceblue;">{{profile.intro | title}}</p>
+
+                <div class="portfolio-links">
+                    <a href="{% url 'singleProfile' profile.pk %}" title="More Details"><i class="bx bx-link"></i></a>
+                  </div>
+              </div>
+
+             <!--  Social media handles
+
+                 <div class="social">
+
+                  {% if profile.instagram_link  %}
+                    <a href="{{profile.instagram_link}}"><i class="bi bi-instagram"></i></a>
+                  {% endif %}
+                 
+                  {% if profile.facebook_link  %}
+                    <a href="{{profile.facebook_link}}"><i class="bi bi-facebook"></i></a>
+                  {% endif %}
+
+                  {% if profile.linkedin_link %}
+                    <a href="{{profile.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
+                  {% endif %}
+
+                  {% if profile.youtube_link %}
+                    <a href="{{profile.youtube_link}}"><i class="bi bi-youtube"></i></a>
+                  {% endif %}
+
+                  {% if profile.website_link %}
+                    <a href="{{profile.website_link }}"><i class="bi bi-globe"></i>
+                    </i></a>
+                  {% endif %}  
+                  
+
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% include 'pagination.html' with querySet=profiles custom_range=custom_range %}
+  </section>
+
+{% endblock %}

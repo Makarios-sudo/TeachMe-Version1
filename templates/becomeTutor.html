@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+<!-- ======= About Us Section ======= -->
+<section id="about" class="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Become a Tutor</h2>
+
+        <p>Are you passionate about teaching?</p>
+        <p>Do you want to share your music knowledge and skills with the world ?</p>
+        
+        <p>Do you have good content to share. Do you have an audience you want to reach out to?</p>
+        <div>
+            <button class="btn btn-success mt-3"><a class="" href="{% url 'userRegister' %}">Register As A Tutor</a></button>
+            <button class="btn btn-success mt-3"><a class="" href="">Register As A Guest</a></button>
+        </div>
+      </div> <hr>
+
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <img src="{% static 'images/tutor.jpg' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 content">
+          <h3> <strong>Musical Motivational Quotes</strong></h3> <hr>
+          <p class="fst-italic">
+            A student is always motivated to practise, if they leave their lessons feeling capable. Frances Clark
+          </p>
+          <p class="fst-italic"> 
+            There is music in everyone soul, the job of a music teacher is to find and nurture it. Keystone Creations.
+          </p>
+          <p class="fst-italic"> 
+            Music can help people become tenacious, team-oreinted, problem solvers who are confident and able to think creatively. Arne Duncan.
+          </p>
+          <p class="fst-italic"> 
+            Music exposes that which can not be put to words, and that which can not remind silent. Unknown.
+          </p>
+          <p class="fst-italic"> 
+            Music is a moral law, it gives soul to the universe, wings to the mind, flight to the imagination, and charm and gaiety to life and everything. Pluto.
+          </p>
+          <p class="fst-italic"> 
+            Music begins where the possibility of lanaguage end. Jean Sibalius
+          </p>
+
+
+          
+
+         
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+  {% include 'footer.html' %} 
+{% endblock content %}

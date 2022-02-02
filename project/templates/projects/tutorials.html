@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+
+
+<!-- ======= Our Portfolio Section ======= -->
+<section id="portfolio" class="portfolio section-bg">
+  <div class="container" >
+
+    <div class="section-title">
+      <h2>Tutorials</h2>
+      <p>Collections of many tutorial for different instrument.</p>
+    </div>
+    
+    
+    <form id="searchForm" action="{% url 'tutorials' %}" method="get" >
+      <div style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+        <input class="form-control"  placeholder="Search For Tutorials ..." name="searchQuery" value="{{searchQuery}}">   
+      </div>
+    </form>
+
+    <div class="row portfolio-container mt-5">
+      {% for tutorial in tutorials %}
+
+      <div class="col-lg-3 col-md-6 portfolio-item filter-app">
+        <div class="portfolio-wrap">
+          <img src="{{tutorial.imageURL}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{tutorial.specialty  | title}}</h4>
+            <p>{{tutorial.name  | title}}</p>
+          </div>
+          <div class="portfolio-links"> 
+            <a href="{{tutorial.imageURL}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{tutorial.name | title}}"><i class="bx bx-plus"></i></a>
+            <a href="{% url 'singleTutorial' tutorial.pk %}" title="More Details"><i class="bx bx-link"></i></a>             
+          </div>    
+        </div> 
+      </div>
+
+      {% endfor %}
+    </div>
+
+    {% include 'pagination.html' with querySet=tutorials custom_range=custom_range %}
+
+
+    <form action="">
+
+      {{form}}
+
+    </form>
+
+    
+  
+
+ 
+      
+
+  </div>
+
+  
+ 
+  
+  
+  
+  
+</section><!-- End Our Portfolio Section -->
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+   
+
